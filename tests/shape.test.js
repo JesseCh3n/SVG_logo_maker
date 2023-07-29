@@ -1,9 +1,25 @@
-const Component = require('../lib/component.js');
+const Shape = require('../lib/shape.js');
 
-describe('Component', () => {
-  test('should throw error if render() is called', () => {
-    const component = new Component();
-    const err = new Error('Child class must implement a render() method.')
-    expect(component.render).toThrow(err);
+describe('Circle', () => {
+  test('render message', () => {
+    const shape = new Shape.Cirlce();
+    shape.shape_colour = 'red';
+    expect(shape.render()).toEqual(expect.arrayContaining(`<circle cx="50" cy="70" r="40" fill="red"></circle>`));
+  });
+});
+
+describe('Triangle', () => {
+  test('render message', () => {
+    const shape = new Shape.Triangle();
+    shape.shape_colour = 'blue';
+    expect(shape.render()).toEqual(expect.arrayContaining(`<polygon points="50,15, 100,100 0,100" fill="blue"></polygon>)`));
+  });
+});
+
+describe('Square', () => {
+  test('render message', () => {
+    const shape = new Shape.Square();
+    shape.shape_colour = 'black';
+    expect(shape.render()).toEqual(expect.arrayContaining(`<circle cx="50" cy="70" r="40" fill="black"></circle>`));
   });
 });
